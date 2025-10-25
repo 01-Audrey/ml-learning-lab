@@ -12,7 +12,7 @@
       "person": 3,
       "bus": 1
     },
-    "timestamp": "2025-10-25T14:39:31.472481"
+    "timestamp": "2025-10-26T00:47:35.762973"
   },
   {
     "image": "zidane.jpg",
@@ -24,7 +24,7 @@
     "class_counts": {
       "person": 2
     },
-    "timestamp": "2025-10-25T14:39:31.536262"
+    "timestamp": "2025-10-26T00:47:35.814774"
   },
   {
     "image": "bus.jpg",
@@ -39,7 +39,7 @@
       "person": 3,
       "bus": 1
     },
-    "timestamp": "2025-10-25T14:39:31.593319"
+    "timestamp": "2025-10-26T00:47:35.873167"
   },
   {
     "image": "zidane.jpg",
@@ -51,6 +51,6 @@
     "class_counts": {
       "person": 2
     },
-    "timestamp": "2025-10-25T14:39:31.640258"
+    "timestamp": "2025-10-26T00:47:35.916040"
   }
 ]
