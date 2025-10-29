@@ -1,0 +1,56 @@
+[
+  {
+    "image": "bus.jpg",
+    "detections": 4,
+    "classes": [
+      "bus",
+      "person",
+      "person",
+      "person"
+    ],
+    "class_counts": {
+      "bus": 1,
+      "person": 3
+    },
+    "timestamp": "2025-10-28T13:30:01.114252"
+  },
+  {
+    "image": "zidane.jpg",
+    "detections": 2,
+    "classes": [
+      "person",
+      "person"
+    ],
+    "class_counts": {
+      "person": 2
+    },
+    "timestamp": "2025-10-28T13:30:01.265686"
+  },
+  {
+    "image": "bus.jpg",
+    "detections": 4,
+    "classes": [
+      "bus",
+      "person",
+      "person",
+      "person"
+    ],
+    "class_counts": {
+      "bus": 1,
+      "person": 3
+    },
+    "timestamp": "2025-10-28T13:30:01.431938"
+  },
+  {
+    "image": "zidane.jpg",
+    "detections": 2,
+    "classes": [
+      "person",
+      "person"
+    ],
+    "class_counts": {
+      "person": 2
+    },
+    "timestamp": "2025-10-28T13:30:01.607098"
+  }
+]
