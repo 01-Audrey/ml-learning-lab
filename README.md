@@ -1,6 +1,6 @@
 # 🚀 ML Learning Lab
 
-Hands-on ML engineering journey. Building foundations in neural networks, computer vision, and model deployment through practical projects.
+Machine learning development portfolio. Neural networks, computer vision, and deployment projects.
 
 ---
 
