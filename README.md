@@ -101,7 +101,7 @@ ml-learning-lab/
 
 ## 🔗 Related Projects
 
-- [Safety Equipment Detection System](https://github.com/01-Audrey/safety-equipment-detection) - Production-ready deployment (coming soon)
+- [Safety Equipment Detection System](https://github.com/01-Audrey/safety-equipment-detector) - Production-ready 
 
 ---
 
