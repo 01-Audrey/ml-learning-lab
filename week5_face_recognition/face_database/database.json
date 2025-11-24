@@ -1,0 +1,48 @@
+{
+    "persons": {
+        "person_001": {
+            "person_id": "person_001",
+            "name": "John Doe",
+            "faces": [
+                {
+                    "face_id": "face_001",
+                    "image_path": "known_faces\\person_001\\face_001.jpg",
+                    "timestamp": "2025-11-24T23:01:30.734039",
+                    "quality_score": 89.9698031651496,
+                    "source": "camera_1",
+                    "embedding": null
+                }
+            ],
+            "total_faces": 1,
+            "average_quality": 89.9698031651496,
+            "first_seen": "2025-11-24T23:01:30.730522",
+            "last_seen": "2025-11-24T23:01:30.734045"
+        },
+        "person_002": {
+            "person_id": "person_002",
+            "name": "Jane Smith",
+            "faces": [],
+            "total_faces": 0,
+            "average_quality": 0.0,
+            "first_seen": "2025-11-24T23:01:30.731366",
+            "last_seen": "2025-11-24T23:01:30.731370"
+        }
+    },
+    "unknown_faces": [
+        {
+            "face_id": "unknown_0001",
+            "image_path": "unknown_faces\\unknown_0001.jpg",
+            "timestamp": "2025-11-24T23:01:30.735819",
+            "quality_score": 89.9698031651496,
+            "source": "camera_2",
+            "embedding": null
+        }
+    ],
+    "stats": {
+        "total_persons": 2,
+        "total_known_faces": 1,
+        "total_unknown_faces": 1,
+        "created_at": "2025-11-24T23:01:30.729960",
+        "last_updated": "2025-11-24T23:01:30.735824"
+    }
+}
