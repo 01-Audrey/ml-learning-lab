@@ -1,0 +1,38 @@
+{
+    "unknown_person": {
+        "enabled": true,
+        "alert_type": "unknown_person",
+        "priority": "critical",
+        "description": "Unknown person detected",
+        "cooldown_seconds": 30
+    },
+    "after_hours": {
+        "enabled": true,
+        "alert_type": "after_hours",
+        "priority": "high",
+        "time_range": [
+            "22:00",
+            "06:00"
+        ],
+        "description": "Access during restricted hours",
+        "cooldown_seconds": 60
+    },
+    "weekend_access": {
+        "enabled": true,
+        "alert_type": "weekend_access",
+        "priority": "medium",
+        "days": [
+            "Sat",
+            "Sun"
+        ],
+        "description": "Access during weekend",
+        "cooldown_seconds": 120
+    },
+    "normal_access": {
+        "enabled": false,
+        "alert_type": "normal_access",
+        "priority": "low",
+        "description": "Normal access logged",
+        "cooldown_seconds": 300
+    }
+}
