@@ -1,0 +1,37 @@
+
+================================================================================
+📊 PERFORMANCE BENCHMARK REPORT
+================================================================================
+
+🚀 FPS BENCHMARKS:
+
+   Test 1:
+      Frames processed: 100
+      Total time: 2.87s
+      Average FPS: 41.5
+      Min FPS: 11.7
+      Max FPS: 49.0
+      Std Dev: 10.4
+      Median FPS: 44.8
+
+⏱️  LATENCY BENCHMARKS:
+
+   Test 1:
+      Iterations: 50
+
+      Detection:
+         Avg: 19.6 ms
+         Min: 18.0 ms
+         Max: 26.0 ms
+
+      Recognition:
+         Avg: 6.4 ms
+         Min: 0.0 ms
+         Max: 82.8 ms
+
+      Total Pipeline:
+         Avg: 28.1 ms
+         Min: 20.5 ms
+         Max: 103.2 ms
+
+================================================================================
