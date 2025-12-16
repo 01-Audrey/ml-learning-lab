@@ -1,0 +1,16 @@
+{
+  "test_loss": 0.3808810222903481,
+  "accuracy": 0.85588,
+  "precision": 0.8664634648653101,
+  "recall": 0.84144,
+  "specificity": 0.87032,
+  "f1_score": 0.853768415925971,
+  "confusion_matrix": {
+    "tp": 10518,
+    "tn": 10879,
+    "fp": 1621,
+    "fn": 1982
+  },
+  "eval_time": 48.76296639442444,
+  "samples_evaluated": 25000
+}
