@@ -1,0 +1,36 @@
+{
+  "overall_robustness_score": 0.9803746943016692,
+  "typo_robustness": {
+    "score": 0.996748491115868,
+    "avg_prob_change": 0.0,
+    "avg_flip_rate": 0.0,
+    "by_type": {
+      "substitute": {
+        "avg_prob_change": 0.021464042272418736,
+        "avg_flip_rate": 0.0
+      },
+      "delete": {
+        "avg_prob_change": 0.0014201143383979799,
+        "avg_flip_rate": 0.0
+      },
+      "insert": {
+        "avg_prob_change": 0.0015859814547002319,
+        "avg_flip_rate": 0.0
+      },
+      "swap": {
+        "avg_prob_change": 0.0015419330075383186,
+        "avg_flip_rate": 0.0
+      }
+    }
+  },
+  "substitution_robustness": {
+    "score": 0.999847322650021,
+    "avg_prob_change": 0.0003053546999581158,
+    "avg_flip_rate": 0.0
+  },
+  "character_robustness": {
+    "score": 0.9445282691391185,
+    "avg_prob_change": 0.060943461721763015,
+    "avg_flip_rate": 0.05
+  }
+}

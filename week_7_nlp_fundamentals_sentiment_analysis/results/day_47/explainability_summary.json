@@ -1,0 +1,20 @@
+{
+  "methods_implemented": [
+    "Gradient-based attention",
+    "LIME-style word importance",
+    "Natural language explanations",
+    "Interactive dashboards"
+  ],
+  "features": [
+    "Word-level importance scores",
+    "Visual attention heatmaps",
+    "Confidence gauges",
+    "Human-readable explanations"
+  ],
+  "use_cases": [
+    "Model debugging",
+    "User trust building",
+    "Bias detection",
+    "Error analysis"
+  ]
+}
