@@ -166,9 +166,9 @@ def load_model():
 
     # Load weights
     weight_paths = [
-        os.path.join(os.path.dirname(__file__), 'models/best_model_extended_v2.pt'),
-        os.path.join(os.path.dirname(__file__), 'models/best_model_extended.pt'),
-        os.path.join(os.path.dirname(__file__), f'models/experiments/{best_exp_name}.pt'),
+        os.path.join(os.path.dirname(__file__), os.path.join(os.path.dirname(__file__), 'models/best_model_extended_v2.pt')),
+        os.path.join(os.path.dirname(__file__), os.path.join(os.path.dirname(__file__), 'models/best_model_extended.pt')),
+        os.path.join(os.path.dirname(__file__), os.path.join(os.path.dirname(__file__), f'models/experiments/{best_exp_name}.pt')),
     ]
 
     for path in weight_paths:
