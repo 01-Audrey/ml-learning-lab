@@ -132,7 +132,7 @@ def load_model():
     """Load trained model and preprocessing objects."""
 
     # Load preprocessing objects
-    with open('data/preprocessing_objects.pkl', 'rb') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'data/preprocessing_objects.pkl'), 'rb') as f:
         preprocessing_objects = pickle.load(f)
 
     word2idx = preprocessing_objects['word2idx']
@@ -141,7 +141,7 @@ def load_model():
     max_len = preprocessing_objects['max_len']
 
     # Load Day 45 experiments to get best model config
-    with open('models/experiments/day45_all_experiments.pkl', 'rb') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'models/experiments/day45_all_experiments.pkl'), 'rb') as f:
         experiments = pickle.load(f)
 
     # Find best model
@@ -166,9 +166,9 @@ def load_model():
 
     # Load weights
     weight_paths = [
-        'models/best_model_extended_v2.pt',
-        'models/best_model_extended.pt',
-        f'models/experiments/{best_exp_name}.pt',
+        os.path.join(os.path.dirname(__file__), 'models/best_model_extended_v2.pt'),
+        os.path.join(os.path.dirname(__file__), 'models/best_model_extended.pt'),
+        os.path.join(os.path.dirname(__file__), f'models/experiments/{best_exp_name}.pt'),
     ]
 
     for path in weight_paths:
