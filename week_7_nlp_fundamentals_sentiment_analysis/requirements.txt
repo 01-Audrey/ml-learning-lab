@@ -1,22 +1,20 @@
 # TextAI Studio - Requirements
 # LSTM Sentiment Analysis Application
 
-# Deep Learning
-torch==2.0.1
-torchvision==0.15.2
+# Deep Learning - Updated for Python 3.13 compatibility
+torch>=2.5.0
+torchvision>=0.20.0
 
 # Web Framework
-streamlit==1.28.0
+streamlit>=1.28.0
 
 # Data Processing
-numpy==1.24.3
-pandas==2.0.3
+numpy>=1.24.3
+pandas>=2.0.3
 
 # Visualization
-matplotlib==3.7.2
-seaborn==0.12.2
+matplotlib>=3.7.2
+seaborn>=0.12.2
 
 # Utilities
-Pillow==10.0.0
-
-# Note: Python 3.11+ required
+Pillow>=10.0.0
