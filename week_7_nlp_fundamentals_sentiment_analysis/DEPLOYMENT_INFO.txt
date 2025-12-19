@@ -1,0 +1,21 @@
+
+# Save this information!
+
+App Name: TextAI Studio
+Deployed URL: [YOUR_URL_HERE]
+GitHub Repo: https://github.com/01-Audrey/ml-learning-lab
+Deployment Date: December 15, 2025
+Status: ✅ LIVE
+
+Features:
+- LSTM sentiment analysis
+- Real-time predictions
+- Word importance visualization
+- Batch processing
+- Professional UI
+
+Share this URL on:
+- LinkedIn
+- Portfolio
+- Resume
+- GitHub README
