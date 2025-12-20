@@ -1,0 +1,4 @@
+Resume,Best Match,Match Score,Skills Found,Top Skills
+resume_1_ml_engineer.txt,job_1_ml_engineer.txt,89.75%,15,"python, pytorch, tensorflow, scikit-learn, pandas"
+resume_2_data_scientist.txt,job_2_data_analyst.txt,86.27%,12,"python, pandas, numpy, machine learning, sql"
+resume_3_software_engineer.txt,job_1_ml_engineer.txt,77.82%,21,"python, machine learning, sql, docker, kubernetes"
