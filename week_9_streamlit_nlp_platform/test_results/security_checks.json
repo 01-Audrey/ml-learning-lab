@@ -1,0 +1,56 @@
+{
+  "total": 8,
+  "passed": 8,
+  "failed": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "name": "No secrets in git",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": ".env.example safe",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": "Docker non-root user",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": "HTTPS documented",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": "Security documentation comprehensive",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": "Rate limiting documented",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    },
+    {
+      "name": "Backup strategy documented",
+      "status": "PASS",
+      "severity": "warning",
+      "issue": null
+    },
+    {
+      "name": "No hardcoded passwords",
+      "status": "PASS",
+      "severity": "error",
+      "issue": null
+    }
+  ]
+}

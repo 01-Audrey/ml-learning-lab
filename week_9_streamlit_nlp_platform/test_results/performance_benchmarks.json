@@ -1,0 +1,40 @@
+{
+  "benchmarks": [
+    {
+      "name": "File I/O (read config)",
+      "elapsed_ms": 0.5435943603515625,
+      "target_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "JSON parsing (requirements)",
+      "elapsed_ms": 0.2040863037109375,
+      "target_ms": 50,
+      "passed": true
+    },
+    {
+      "name": "Directory listing",
+      "elapsed_ms": 0.25153160095214844,
+      "target_ms": 50,
+      "passed": true
+    },
+    {
+      "name": "File writing (temp)",
+      "elapsed_ms": 0.621795654296875,
+      "target_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "Path operations",
+      "elapsed_ms": 0.05125999450683594,
+      "target_ms": 10,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "pass_rate": 100.0
+  }
+}
