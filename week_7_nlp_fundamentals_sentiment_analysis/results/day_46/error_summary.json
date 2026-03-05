@@ -1,0 +1,29 @@
+{
+  "total_errors": 3603,
+  "false_positives": 1621,
+  "false_negatives": 1982,
+  "avg_confidence_errors": 0.6102530221119286,
+  "avg_length_errors": 258.6600055509298,
+  "pattern_analysis": {
+    "Negation Words": {
+      "count": 3419,
+      "percentage": 94.89314460172079
+    },
+    "Sarcasm Indicators": {
+      "count": 759,
+      "percentage": 21.065778517901748
+    },
+    "Mixed Sentiment": {
+      "count": 3071,
+      "percentage": 85.23452678323619
+    },
+    "Extreme Words": {
+      "count": 771,
+      "percentage": 21.398834304746046
+    },
+    "Weak Language": {
+      "count": 1314,
+      "percentage": 36.46960865945046
+    }
+  }
+}

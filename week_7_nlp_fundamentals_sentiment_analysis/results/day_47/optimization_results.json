@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "avg_latency_ms": 6.213939189910889,
+    "std_latency_ms": 1.2238777519422939
+  },
+  "cached_preprocessing": {
+    "avg_latency_ms": 8.405008316040039,
+    "speedup": 0.7393138657640904,
+    "improvement_pct": -35.26054985679014
+  },
+  "batch_processing": {
+    "note": "Tested in Day 46",
+    "speedup": "~64x for batch size 64"
+  }
+}

@@ -1,0 +1,39 @@
+# Security System Configuration
+# Default settings for object detection and tracking
+
+# Model Configuration
+model:
+  yolo_model: "yolov8n.pt"
+  confidence: 0.5
+  device: "cpu"  # Options: "cpu", "cuda", "mps"
+  classes: [0]   # 0 = person
+
+# Tracking Configuration
+tracking:
+  max_age: 30           # Max frames to keep track alive without detection
+  n_init: 3             # Min detections before track confirmed
+  nms_max_overlap: 1.0  # NMS IoU threshold
+
+# Video Processing
+video:
+  target_resolution: [640, 480]  # [width, height] or null for original
+  skip_frames: 0        # Process every Nth frame (0 = no skipping)
+  save_output: true     # Save processed video
+  show_display: false   # Show live display window
+
+# Output Settings
+output:
+  output_dir: "output"
+  save_logs: true
+  log_format: "csv"     # Options: "csv", "json", "both"
+
+# Performance
+performance:
+  batch_size: 1         # Batch inference (experimental)
+  num_threads: 4        # CPU threads
+
+# Logging
+logging:
+  level: "INFO"         # Options: DEBUG, INFO, WARNING, ERROR
+  file: "logs/system.log"
+  console: true

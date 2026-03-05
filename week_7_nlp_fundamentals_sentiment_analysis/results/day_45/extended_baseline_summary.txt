@@ -1,0 +1,14 @@
+
+EXTENDED BASELINE MODEL SUMMARY
+======================================================================
+Model: Extended Baseline (Day 44 + 5 epochs)
+Total Epochs: 13
+Architecture: 2-layer LSTM, Hidden: 128, Dropout: 0.5
+
+Performance:
+  Starting (Day 44):     50.61%
+  Final (Day 45):        79.70%
+  Best (Epoch 12):      80.38%
+  Improvement:           +29.76%
+
+Status: ⚠️ NEEDS MORE WORK

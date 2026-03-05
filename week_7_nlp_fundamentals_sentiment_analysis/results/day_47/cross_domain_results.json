@@ -1,0 +1,35 @@
+{
+  "training_domain": {
+    "name": "Movies (IMDB)",
+    "accuracy": 0.85588,
+    "samples": 25000
+  },
+  "cross_domain_results": {
+    "products": {
+      "accuracy": 1.0,
+      "avg_confidence": 0.9427632499719039,
+      "samples": 16,
+      "gap": -14.412000000000006
+    },
+    "restaurants": {
+      "accuracy": 1.0,
+      "avg_confidence": 0.9534496195847169,
+      "samples": 16,
+      "gap": -14.412000000000006
+    },
+    "books": {
+      "accuracy": 1.0,
+      "avg_confidence": 0.9819556308211759,
+      "samples": 16,
+      "gap": -14.412000000000006
+    }
+  },
+  "summary": {
+    "avg_cross_domain_accuracy": 100.0,
+    "avg_generalization_gap": -14.412000000000006,
+    "max_gap": -14.412000000000006,
+    "min_gap": -14.412000000000006,
+    "best_domain": "Products",
+    "worst_domain": "Products"
+  }
+}

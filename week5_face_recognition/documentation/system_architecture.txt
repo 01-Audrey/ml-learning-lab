@@ -1,0 +1,389 @@
+
+================================================================================
+AI SECURITY & SURVEILLANCE SYSTEM - WEEK 5
+Technical Architecture Documentation
+================================================================================
+
+PROJECT OVERVIEW:
+An intelligent security and safety monitoring system that combines face 
+recognition, person tracking, PPE detection, and behavioral analysis to 
+provide comprehensive facility monitoring with real-time alerts.
+
+================================================================================
+SYSTEM ARCHITECTURE
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                            INPUT LAYER                                   │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐               │
+│  │ Camera 1 │  │ Camera 2 │  │ Camera N │  │ Video    │               │
+│  │  (Live)  │  │  (Live)  │  │  (Live)  │  │  File    │               │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘               │
+│       └──────────────┴──────────────┴─────────────┘                     │
+│                            │                                             │
+└────────────────────────────┼─────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      DETECTION LAYER (Day 29)                            │
+│  ┌─────────────────────────────────────────────────────────────┐        │
+│  │ Face Detection (DNN Caffe - ResNet-10)                      │        │
+│  │ - Confidence threshold: 0.5                                 │        │
+│  │ - Real-time detection on video frames                       │        │
+│  │ - Output: Face bounding boxes                               │        │
+│  └─────────────────────────────────────────────────────────────┘        │
+└────────────────────────────┬────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      TRACKING LAYER (Day 31)                             │
+│  ┌─────────────────────────────────────────────────────────────┐        │
+│  │ Centroid Tracker                                            │        │
+│  │ - Assigns unique IDs to persons                            │        │
+│  │ - Tracks across frames (max_disappeared: 30)              │        │
+│  │ - Handles occlusions and re-appearance                    │        │
+│  │ - Output: Tracked person IDs + bounding boxes             │        │
+│  └─────────────────────────────────────────────────────────────┘        │
+└────────────────────────────┬────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    RECOGNITION LAYER (Day 30)                            │
+│  ┌─────────────────────────────────────────────────────────────┐        │
+│  │ Face Recognition (ResNet18 + Embeddings)                   │        │
+│  │ - 512-dimensional face embeddings                          │        │
+│  │ - Cosine similarity matching                               │        │
+│  │ - Similarity threshold: 0.6                                │        │
+│  │ - Recognition caching (every 10 frames)                    │        │
+│  │ - Output: Person ID (known/unknown)                        │        │
+│  └─────────────────────────────────────────────────────────────┘        │
+│  ┌─────────────────────────────────────────────────────────────┐        │
+│  │ Face Database (SQLite + JSON)                              │        │
+│  │ - Person metadata                                          │        │
+│  │ - Face embeddings                                          │        │
+│  │ - Face images                                              │        │
+│  └─────────────────────────────────────────────────────────────┘        │
+└────────────────────────────┬────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    SAFETY ANALYSIS LAYER (Day 34)                        │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐     │
+│  │ PPE Detection    │  │ Zone Monitoring  │  │ Behavior         │     │
+│  │ - 6 categories   │  │ - Polygon zones  │  │ Analysis         │     │
+│  │ - YOLOv8         │  │ - Requirements   │  │ - Speed calc     │     │
+│  │ - Real-time      │  │ - Point-in-poly  │  │ - Dwell time     │     │
+│  └──────────────────┘  └──────────────────┘  └──────────────────┘     │
+└────────────────────────────┬────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      ALERT LAYER (Days 32-33)                            │
+│  ┌─────────────────────────────────────────────────────────────┐        │
+│  │ Alert Manager                                               │        │
+│  │ - Rules engine (JSON config)                               │        │
+│  │ - Quality gating                                            │        │
+│  │ - Deduplication                                             │        │
+│  │ - Escalation logic                                          │        │
+│  │ - Cooldown management                                       │        │
+│  └─────────────────────────────────────────────────────────────┘        │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐     │
+│  │ Email            │  │ SMS              │  │ Webhook          │     │
+│  │ Notifications    │  │ Notifications    │  │ Integration      │     │
+│  └──────────────────┘  └──────────────────┘  └──────────────────┘     │
+└────────────────────────────┬────────────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      STORAGE LAYER                                       │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐     │
+│  │ Alert Database   │  │ Face Database    │  │ Analytics DB     │     │
+│  │ (SQLite)         │  │ (SQLite+JSON)    │  │ (SQLite)         │     │
+│  └──────────────────┘  └──────────────────┘  └──────────────────┘     │
+└─────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+COMPONENT SPECIFICATIONS
+================================================================================
+
+1. FACE DETECTION MODULE (Day 29)
+   Model: DNN Caffe (ResNet-10 based)
+   Input: BGR image (any resolution)
+   Output: List of face bounding boxes with confidence scores
+   Threshold: 0.5 confidence
+   Performance: ~15ms per frame
+
+2. FACE ALIGNMENT MODULE (Day 29)
+   Method: Eye detection + affine transformation
+   Input: Face bounding box + original image
+   Output: Aligned face (160x160 pixels)
+   Cascade: Haar Cascade for eye detection
+
+3. FACE EMBEDDING MODULE (Day 30)
+   Model: ResNet18 (pretrained) + custom embedding layer
+   Embedding Size: 512 dimensions
+   Normalization: L2 normalized embeddings
+   Performance: ~5ms per face
+
+4. FACE MATCHER MODULE (Day 30)
+   Algorithm: Cosine similarity
+   Threshold: 0.6 (configurable)
+   Database: In-memory embeddings + SQLite metadata
+   Strategy: Average of multiple embeddings per person
+
+5. TRACKING MODULE (Day 31)
+   Algorithm: Centroid tracking with Hungarian matching
+   Parameters:
+     - max_disappeared: 30 frames
+     - max_distance: 50 pixels
+   Features:
+     - Unique ID assignment
+     - Occlusion handling
+     - Re-identification
+
+6. ALERT MODULE (Days 32-33)
+   Components:
+     - AlertDatabase (SQLite)
+     - AlertRules (JSON config)
+     - EmailNotifier (SMTP)
+     - SMSNotifier (Twilio API)
+     - WebhookNotifier (HTTP POST)
+   Features:
+     - Quality gating
+     - Deduplication
+     - Escalation (time-based, repeat offender)
+     - Cooldown management
+
+7. SAFETY MODULE (Day 34)
+   PPE Detection:
+     - Categories: 6 (hardhat, vest, mask, gloves, goggles, boots)
+     - Model: YOLOv8 (from Day 29)
+   Zone Monitoring:
+     - Types: 3 (restricted, exclusion, emergency)
+     - Method: Polygon-based point-in-polygon testing
+   Behavior Analysis:
+     - Speed calculation (pixels/second)
+     - Dwell time tracking
+     - Running detection
+     - Loitering detection
+
+================================================================================
+PERFORMANCE METRICS
+================================================================================
+
+Processing Speed:
+  - Average FPS: 27 FPS (Day 31 baseline)
+  - Detection latency: ~15ms per frame
+  - Recognition latency: ~5ms per face
+  - Total pipeline: ~20-40ms per frame
+
+Accuracy:
+  - Face detection: High (>95% in good conditions)
+  - Face recognition: High (depends on database quality)
+  - False positive rate: 4% (after Day 33 optimization)
+  - False positive reduction: 73% (from 15% to 4%)
+
+Optimization Features:
+  - Recognition caching: Every 10 frames (10x speedup)
+  - Quality gating: Confidence + blur + size filters
+  - Alert cooldown: Prevent spam (30-60 second cooldown)
+  - Deduplication: Unknown person embedding similarity
+
+Resource Usage:
+  - CPU: Moderate (single core ~60-80%)
+  - Memory: ~1-2GB RAM
+  - GPU: Optional (not required, CPU sufficient)
+
+================================================================================
+DATA FLOW
+================================================================================
+
+1. Frame Input
+   ↓
+2. Face Detection (detect all faces)
+   ↓
+3. Tracking Update (assign/update track IDs)
+   ↓
+4. Recognition (every 10 frames)
+   - Align face
+   - Generate embedding
+   - Match to database
+   - Update track-to-person mapping
+   ↓
+5. Safety Analysis (parallel)
+   - PPE detection
+   - Zone checking
+   - Behavior analysis
+   ↓
+6. Violation Checking
+   - Check alert rules
+   - Apply quality gating
+   - Check deduplication
+   - Check cooldown
+   ↓
+7. Alert Generation (if violation)
+   - Create database entry
+   - Send notifications
+   - Update escalation
+   ↓
+8. Frame Annotation
+   - Draw bounding boxes
+   - Add labels
+   - Show FPS/stats
+   ↓
+9. Output Frame + Results
+
+================================================================================
+DATABASE SCHEMAS
+================================================================================
+
+Face Database (database.json):
+{
+  "persons": {
+    "person_id": {
+      "name": "string",
+      "added_date": "ISO timestamp",
+      "faces": [
+        {
+          "face_id": "string",
+          "image_path": "string",
+          "embedding": [512 floats],
+          "quality_score": float,
+          "added_date": "ISO timestamp"
+        }
+      ]
+    }
+  },
+  "stats": {
+    "total_persons": int,
+    "total_faces": int
+  }
+}
+
+Alert Database (alerts_enhanced.db):
+CREATE TABLE alerts (
+    alert_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp TEXT NOT NULL,
+    alert_type TEXT NOT NULL,
+    priority TEXT NOT NULL,
+    person_id TEXT,
+    person_name TEXT,
+    location TEXT DEFAULT 'main_entrance',
+    description TEXT,
+    image_path TEXT,
+    acknowledged INTEGER DEFAULT 0,
+    acknowledged_by TEXT,
+    acknowledged_at TEXT,
+    resolved INTEGER DEFAULT 0,
+    resolved_by TEXT,
+    resolved_at TEXT,
+    escalation_level INTEGER DEFAULT 1,
+    false_positive INTEGER DEFAULT 0,
+    confidence REAL,
+    quality_score REAL,
+    response_time_seconds INTEGER
+);
+
+================================================================================
+CONFIGURATION FILES
+================================================================================
+
+alert_rules.json:
+{
+  "unknown_person": {
+    "enabled": true,
+    "alert_type": "unknown_person",
+    "priority": "critical",
+    "cooldown_seconds": 30
+  },
+  "after_hours": {
+    "enabled": true,
+    "alert_type": "after_hours",
+    "priority": "high",
+    "time_range": ["22:00", "06:00"],
+    "cooldown_seconds": 60
+  }
+}
+
+================================================================================
+API ENDPOINTS (For Week 6)
+================================================================================
+
+Planned REST API:
+  POST /detect       - Detect faces in image
+  POST /track        - Track people in video
+  POST /recognize    - Recognize person
+  GET  /alerts       - Get alert history
+  POST /alerts/ack   - Acknowledge alert
+  GET  /faces        - List known persons
+  POST /faces        - Add new person
+  DELETE /faces/:id  - Remove person
+  GET  /analytics    - Get statistics
+
+================================================================================
+DEPLOYMENT CONSIDERATIONS
+================================================================================
+
+Hardware Requirements:
+  - CPU: Intel i5 or equivalent (4+ cores recommended)
+  - RAM: 4GB minimum, 8GB recommended
+  - Storage: 10GB+ for models and databases
+  - Camera: USB webcam or IP camera (H.264 stream)
+  - GPU: Optional (NVIDIA for CUDA acceleration)
+
+Software Requirements:
+  - Python 3.8+
+  - OpenCV 4.5+
+  - PyTorch 1.9+
+  - NumPy, SciPy, scikit-learn
+  - SQLite 3
+  - Optional: Docker for containerization
+
+Network Requirements:
+  - For email alerts: SMTP access (port 587)
+  - For SMS alerts: Twilio API access
+  - For webhooks: Outbound HTTPS
+  - For IP cameras: RTSP stream access
+
+Security Considerations:
+  - Face database encryption
+  - Alert database access control
+  - API authentication (Week 6)
+  - HTTPS for web dashboard (Week 6)
+  - Secure credential storage (environment variables)
+
+Scalability:
+  - Single camera: 30 FPS sustained
+  - Multiple cameras: Parallel processing recommended
+  - Large database (>1000 persons): Consider PostgreSQL
+  - High alert volume: Message queue (RabbitMQ/Redis)
+
+================================================================================
+FUTURE ENHANCEMENTS
+================================================================================
+
+Week 6 Additions (Planned):
+  - REST API (FastAPI)
+  - Web dashboard (Streamlit/React)
+  - Multi-camera support
+  - Heat map analytics
+  - Historical data analysis
+  - Docker containerization
+
+Potential Improvements:
+  - GPU acceleration
+  - Model quantization for edge deployment
+  - Advanced tracking (DeepSORT)
+  - Pose estimation for behavior analysis
+  - Facial attribute analysis (age, gender, emotion)
+  - License plate recognition
+  - Object detection (weapons, bags)
+  - Integration with access control systems
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
+Generated: 2025-11-28 17:43:44
+Week 5 Complete: Days 29-35
+Next: Week 6 - Dashboard, API & Deployment
+================================================================================

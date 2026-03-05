@@ -1,0 +1,48 @@
+{
+  "single_prediction": {
+    "avg_latency_ms": 5.792062282562256,
+    "p95_latency_ms": 6.741893291473389,
+    "p99_latency_ms": 11.347959041595605,
+    "std_latency_ms": 3.4905636131922053
+  },
+  "batch_processing": [
+    {
+      "batch_size": 1,
+      "avg_time": 0.006145501136779785,
+      "throughput": 162.7206598360497,
+      "latency_per_sample": 6.145501136779785
+    },
+    {
+      "batch_size": 8,
+      "avg_time": 0.03421461582183838,
+      "throughput": 233.81820335664239,
+      "latency_per_sample": 4.276826977729797
+    },
+    {
+      "batch_size": 16,
+      "avg_time": 0.027412557601928712,
+      "throughput": 583.6741041220561,
+      "latency_per_sample": 1.7132848501205444
+    },
+    {
+      "batch_size": 32,
+      "avg_time": 0.06361498832702636,
+      "throughput": 503.02610817905367,
+      "latency_per_sample": 1.9879683852195738
+    },
+    {
+      "batch_size": 64,
+      "avg_time": 0.09593076705932617,
+      "throughput": 667.1477979574653,
+      "latency_per_sample": 1.4989182353019714
+    },
+    {
+      "batch_size": 128,
+      "avg_time": 0.18443286418914795,
+      "throughput": 694.0194772918976,
+      "latency_per_sample": 1.4408817514777184
+    }
+  ],
+  "device": "cpu",
+  "model_parameters": 2631041
+}

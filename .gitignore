@@ -1,21 +1,3 @@
-notepad .gitignore
-```
-
-**Press Enter**
-
----
-
-**Notepad will open and might ask:**
-> "Cannot find the file. Do you want to create a new file?"
-
-**Click "Yes"**
-
----
-
-### **STEP 3: Paste content into .gitignore**
-
-**Copy this ENTIRE block:**
-```
 # Python
 __pycache__/
 *.py[cod]
@@ -54,3 +36,10 @@ Thumbs.db
 # Large files
 *.zip
 *.tar.gz
+
+# Week 8 trained model folders (too large for GitHub - 3GB+)
+week_8_transformers_advanced_nlp/fake_news_detector_results/
+week_8_transformers_advanced_nlp/t5_summarization_results/
+week_8_transformers_advanced_nlp/models/bert_sentiment_model/
+week_9_streamlit_nlp_platform/user_data/
+ 
